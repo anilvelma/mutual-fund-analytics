@@ -1,7 +1,11 @@
 import pandas as pd
+from pathlib import Path
 
-# Load dataset
-df = pd.read_csv("../data/raw/02_nav_history.csv")
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+input_file = BASE_DIR / "data" / "raw" / "02_nav_history.csv"
+
+df = pd.read_csv(input_file)
 
 print("Original Shape:", df.shape)
 
@@ -30,6 +34,8 @@ print("\nMissing Values:")
 print(df.isnull().sum())
 
 # Save cleaned dataset
-df.to_csv("../data/processed/nav_history_cleaned.csv", index=False)
+output_file = BASE_DIR / "data" / "processed" / "nav_history_cleaned.csv"
+
+df.to_csv(output_file, index=False)
 
 print("\nCleaned file saved successfully!")
